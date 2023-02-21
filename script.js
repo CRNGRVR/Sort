@@ -3,40 +3,41 @@
 let items = {
 
     "first":{
-        "title": "first",
+        "title": "First",
         "price": 5,
-        "selled": 1000,
-        "rate": 5
+        "selled": 100,
+        "rate": 1
     },
 
     "second":{
-        "title": "second",
+        "title": "Second",
         "price": 4,
-        "selled": 1200,
-        "rate": 4
+        "selled": 100,
+        "rate": 2
     },
 
     "third":{
-        "title": "third",
+        "title": "Third",
         "price": 3,
-        "selled": 2000,
+        "selled": 600,
         "rate": 3
     },
 
-    "f":{
-        "title": "f",
+    "four":{
+        "title": "Four",
         "price": 2,
-        "selled": 2000,
-        "rate": 3
+        "selled": 400,
+        "rate": 6
     },
 
-    "fi":{
-        "title": "fi",
+    "five":{
+        "title": "Five",
         "price": 1,
-        "selled": 2000,
-        "rate": 3
+        "selled": 500,
+        "rate": 1
     }
 }
+
 
 let content = document.querySelector('.content')
 
@@ -44,16 +45,15 @@ let price_btn = document.querySelector('.price_btn')
 price_btn.addEventListener("click", sortByPrice)
 
 let rate_btn = document.querySelector('.rate_btn')
-price_btn.addEventListener("click", sortByRate)
+rate_btn.addEventListener("click", sortByRate)
 
 let sells_btn = document.querySelector('.sells_btn')
-price_btn.addEventListener("click", sortByPrice)
+sells_btn.addEventListener("click", sortBySells)
 
 //  Вставка из объекта с атрибутами html
 for (const key in items) {
-    content.innerHTML += `<div class="item" price="${items[key]["price"]}" selled="${items[key]["selled"]}" rate="${items[key]["rate"]}">${items[key]["title"]}</div>`
+    content.innerHTML += `<div class="item" price="${items[key]["price"]}" selled="${items[key]["selled"]}" rate="${items[key]["rate"]}"><div class="text">${items[key]["title"]}</div></div>`
 }
-
 
 
 function sortByPrice(){
@@ -91,7 +91,7 @@ function sortBySells(){
     for(let i = 0; i < content.children.length; i++){
         for(let j = i; j < content.children.length; j++){
 
-            if(+content.children[i].getAttribute('sells') > +content.children[j].getAttribute('sells')){
+            if(+content.children[i].getAttribute('selled') > +content.children[j].getAttribute('selled')){
 
                 //  Эта переменная хранит заменённое значение для возвращения обратно в список
                 let replaceNode = content.replaceChild(content.children[j], content.children[i])
